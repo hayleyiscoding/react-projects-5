@@ -1,5 +1,4 @@
-/* Variables */
-:root {
+Variables :root {
   --primary: ;
   --secondary: ;
   --accent: ;
@@ -335,3 +334,30 @@ a:hover {
 
 4) Code in 'rem'
  */
+
+.nav-toggle {
+  display: none;
+}
+.links-container {
+  height: 0;
+  overflow: hidden;
+  transition: all 0.3s linear;
+}
+.show-container {
+  height: 10rem;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+  .social-icons {
+    display: none;
+  }
+  .links-container ul {
+    display: block !important;
+  }
+  nav {
+    display: block !important;
+  }
+}
