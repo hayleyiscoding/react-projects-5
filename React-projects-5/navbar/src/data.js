@@ -21,6 +21,11 @@ export const links = [
     url: "/products",
     text: "products",
   },
+  {
+    id: 5,
+    url: "/profile",
+    text: "profile",
+  },
 ];
 
 export const socialIcons = [

@@ -342,6 +342,7 @@ a:hover {
   height: 0;
   overflow: hidden;
   transition: all 0.3s linear;
+  background-color: red;
 }
 .show-container {
   height: 10rem;
