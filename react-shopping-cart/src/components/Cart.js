@@ -1,33 +1,50 @@
 import ItemCart from "./itemCart";
+import { AiOutlineClose } from "react-icons/ai";
 
-export default function Cart() {
+export default function Cart({ showCart, addedToCart }) {
   return (
-    <section>
-      <div className='cart-close-icon'>
-        <img src='/images/delete-icon.png' alt='' />
+    <section className='cart'>
+      <div className='cart-close'>
+        <button className='cart-close-icon' onClick={showCart}>
+          <AiOutlineClose />
+        </button>
       </div>
       <div>
-        <div>
-          <img src='/images/cart-icon.png' alt='' />
-          <div>4</div>
-        </div>
-        <div>
+        <div className='flex center cart-header'>
+          <div className='main--cart_icon'>
+            <button className='main--cart_img'>
+              <img src='/images/cart-icon.png' alt='Cart icon' />
+              <div className='cart-number flex center'>4</div>
+            </button>
+          </div>
           <h2>Cart</h2>
         </div>
-      </div>
-      <div>
-        <ItemCart />
-        <ItemCart />
-        <ItemCart />
-      </div>
-      <div>
-        <h4>SUBTOTAL</h4>
-        <div>
-          <h4>$37.40</h4>
-          <h5>Or up to 9 x $4.16</h5>
+        {addedToCart.length > 0 ? (
+          <div className='cart_items'>
+            {addedToCart.map((item) => {
+              return <ItemCart key={item.id} item={item} />;
+            })}
+          </div>
+        ) : (
+          <div className='cart_items empty_cart'>
+            <h5>Add some products in the cart </h5>
+            <br />
+            <h5>:)</h5>
+          </div>
+        )}
+        <div className='cart_subtotal flex justify-between'>
+          <h4>SUBTOTAL</h4>
+          <div className='cart_total'>
+            <h4>$ 0.40</h4>
+            <h5>OR UP TO 9 x $ 0.00</h5>
+          </div>
+        </div>
+        <div className='button_checkout'>
+          <button type='button' className='btn'>
+            CHECKOUT
+          </button>
         </div>
       </div>
-      <button type='button'></button>
     </section>
   );
 }
