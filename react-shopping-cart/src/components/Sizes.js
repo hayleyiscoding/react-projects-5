@@ -1,29 +1,23 @@
-export default function Sizes() {
+export default function Sizes({ includesSize, setActive, active, sizeArray }) {
   return (
     <div>
       <h3>Sizes:</h3>
       <ul className='sizes--list'>
-        <li>
-          <button type='button'>XS</button>
-        </li>
-        <li>
-          <button type='button'>S</button>
-        </li>
-        <li>
-          <button type='button'>M</button>
-        </li>
-        <li>
-          <button type='button'>ML</button>
-        </li>
-        <li>
-          <button type='button'>L</button>
-        </li>
-        <li>
-          <button type='button'>XL</button>
-        </li>
-        <li>
-          <button type='button'>XXL</button>
-        </li>
+        {["XS", "S", "M", "ML", "L", "XL", "XXL"].map((size) => {
+          return (
+            <li>
+              <button
+                className={sizeArray.includes(size) ? "active" : ""}
+                type='button'
+                onClick={() => {
+                  includesSize(size);
+                }}
+              >
+                {size}
+              </button>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

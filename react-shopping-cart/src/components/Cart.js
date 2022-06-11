@@ -1,7 +1,17 @@
 import ItemCart from "./itemCart";
 import { AiOutlineClose } from "react-icons/ai";
 
-export default function Cart({ showCart, addedToCart }) {
+export default function Cart({
+  showCart,
+  addedToCart,
+  addToCart,
+  removeItem,
+  countItems,
+  getCartTotal,
+  getCartTotalInstallments,
+}) {
+  console.log(countItems(), "main");
+
   return (
     <section className='cart'>
       <div className='cart-close'>
@@ -14,7 +24,7 @@ export default function Cart({ showCart, addedToCart }) {
           <div className='main--cart_icon'>
             <button className='main--cart_img'>
               <img src='/images/cart-icon.png' alt='Cart icon' />
-              <div className='cart-number flex center'>4</div>
+              <div className='cart-number flex center'>{countItems()}</div>
             </button>
           </div>
           <h2>Cart</h2>
@@ -22,7 +32,14 @@ export default function Cart({ showCart, addedToCart }) {
         {addedToCart.length > 0 ? (
           <div className='cart_items'>
             {addedToCart.map((item) => {
-              return <ItemCart key={item.id} item={item} />;
+              return (
+                <ItemCart
+                  key={item.id}
+                  item={item}
+                  addToCart={addToCart}
+                  removeItem={removeItem}
+                />
+              );
             })}
           </div>
         ) : (
@@ -35,12 +52,18 @@ export default function Cart({ showCart, addedToCart }) {
         <div className='cart_subtotal flex justify-between'>
           <h4>SUBTOTAL</h4>
           <div className='cart_total'>
-            <h4>$ 0.40</h4>
-            <h5>OR UP TO 9 x $ 0.00</h5>
+            <h4>$ {getCartTotal().toFixed(2)}</h4>
+            <h5>OR UP TO 9 x $ {getCartTotalInstallments().toFixed(2)}</h5>
           </div>
         </div>
         <div className='button_checkout'>
-          <button type='button' className='btn'>
+          <button
+            type='button'
+            className='btn'
+            onClick={() =>
+              alert(`Your cart total is $${getCartTotal().toFixed(2)}`)
+            }
+          >
             CHECKOUT
           </button>
         </div>
